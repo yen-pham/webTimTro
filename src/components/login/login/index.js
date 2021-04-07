@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { signInWithGoogle } from '../../../connectFirebase/firebase.utils';
+import { signInWithGoogle, doSignInWithFacebook, doSignInWithEmailAndPassword } from '../../../connectFirebase/firebase.utils';
 import { auth } from '../../../connectFirebase/firebase.utils';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: null
+      currentUser: null,
+      email:'',
+      password:''
     }
   }
   unsubscribeFromAuth = null;
@@ -22,6 +24,20 @@ class Login extends Component {
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
+  loginFace =()=> {
+    console.log('aa');
+    doSignInWithFacebook()
+    .then(socialAuthUser => {console.log(socialAuthUser);})
+  }
+
+  loginPass (email, password) {
+    doSignInWithEmailAndPassword(email, password).then(socialAuthUser => {console.log(socialAuthUser);})
+  }
+  onChangeInput (event) {
+    this.setState({
+      [event.target.name] : event.target.value
+    });
+  }
   render() {
     return (
       <Form
@@ -32,9 +48,9 @@ class Login extends Component {
       >
         <Form.Item
           name="username"
-          rules={[{ required: true, message: 'Please input your Username!' }]}
+          rules={[{ required: true, message: 'Please input your email!' }]}
         >
-          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="email" name="email"  onChange={(event)=>this. onChangeInput(event)}/>
         </Form.Item>
         <Form.Item
           name="password"
@@ -44,6 +60,8 @@ class Login extends Component {
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             placeholder="Password"
+            name="password"
+            onChange={(event)=>this. onChangeInput(event)}
           />
         </Form.Item>
 
@@ -58,10 +76,10 @@ class Login extends Component {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type="primary" htmlType="submit" className="login-form-button" onClick={(email, password)=>this.loginPass(this.state.email,this.state.password)}>
             Log in
               </Button>
-              Or <a href="">register now!</a>
+              Or <span className="cursor-pointer" onClick={()=>this.props.isRegister()} href="">register now!</span>
         </Form.Item>
         <Form.Item>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -69,7 +87,7 @@ class Login extends Component {
               <div><img src="image/google.svg" width='40' onClick={signInWithGoogle}></img></div>
             </Col>
             <Col className="gutter-row" span={3}>
-              <div><img src="image/facebook.svg" width='40'></img></div>
+              <div onClick={()=>this.loginFace()}><img src="image/facebook.svg" width='40'></img></div>
             </Col>
           </Row>
         </Form.Item>
