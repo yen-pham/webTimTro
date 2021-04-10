@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { PhoneOutlined, SearchOutlined, RightOutlined, FacebookOutlined } from '@ant-design/icons';
 import './dashboard.css';
 import { Button, Menu, Checkbox } from 'antd';
+import Item from './home/item';
+import Header from '../layout/header/index';
+import { getMotelsAction } from '../../redux/action';
+import { connect } from "react-redux";
+
 
 class Dashboard extends Component {
   constructor(props) {
@@ -10,6 +15,11 @@ class Dashboard extends Component {
 
     }
   }
+
+  componentDidMount() {
+    console.log(this.props.motels);
+  }
+  
 
   menu = () => (
     <Menu>
@@ -29,32 +39,7 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         <div className="dashboard-header">
-          <div className="header">
-            <div className="container header-navigation">
-              <div className="logo">
-                <img src="image/logo.png" alt="BigCo Inc. logo" />
-              </div>
-              <div className="navigation">
-                <ul className="nav justify-content-center">
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">Blog</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">Báo giá</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">en vi</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">Đăng nhập</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">Đăng kí</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <Header background="unset"/>
           <div className="header-center">
             <div className="center-title">
               <p>Thuecanho.com</p>
@@ -168,313 +153,23 @@ class Dashboard extends Component {
               </div>
             </div>
             <div className="col-9 content row bg-light">
-              <div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div>
-              <div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div><div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div><div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div><div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div><div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div><div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div><div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div><div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div><div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div><div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div><div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div><div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div><div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div><div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div><div className="col-4 image-container" style={{
-                backgroundImage: `url("http://www.thuecanho.com/static/cache/listings/2021_13/alb10738_104510_161751391244.25-15-1-800x600.jpeg?v=1617515282")`
-              }}>
-                <div className="price">
-                  <div className="price-value">10,000,000</div>
-                  <span>vnd/tháng</span>
-                </div>
-                <div className="adress">
-                  <div className="adress-value">61 Nguyễn Văn Linh, </div>
-                  <span>60 m2</span>
-                </div>
-                <div className="view">
-                  <div>
-                    Xem chi tiết
-                  </div>
-                </div>
-              </div>
+              {this.props.motels?.map(value=><Item motel={value}/>)}
 
             </div>
           </div>
         </div>
-        <div className="dashboard-footer container pt-4">
-          <div className="row">
-            <div className="left-footer col-3">
-              <div className="d-flex">
-                <a>Đăng tin</a><RightOutlined />
-              </div>
-              
-            </div>
-            <div className="right-footer col-9 row">
-              <div className="col-4 footer-submenu">
-                <ul className="nav justify-content-center d-block">
-                  <li className="nav-item">
-                    <a className="nav-link active" href="#">Điều khoản thỏa thuận</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">Quy chế hoạt động</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">Quy định đăng tin</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">Hướng dẫn - Đăng tin</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">Hướng dẫn - Tìm kiếm</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-5">
-                <img src="image/logo_TrueMoney.png" alt="BigCo Inc. logo" />
-              </div>
-              <div className="col-3 footer-fb">
-                <div className="d-flex">
-                  <a>Theo dõi!</a><FacebookOutlined />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="pt-4 pb-2 d-flex justify-content-center">
-            <p>Thuecanho.com công cụ tìm kiếm hàng đầu Việt Nam về lĩnh vực cho thuê nhà ở © 2017-2021 Thuecanho.com. Trang web có bản quyền hợp pháp.</p>
-          </div>
-        </div>
-      </div>
+           </div>
     );
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => ({
+  motels: state?.motels,
+  loading: state?.loading,
+});
+const mapDispatchToProps = (dispatch) => {
+  return {  
+    getMotels: () => dispatch(getMotelsAction())
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
