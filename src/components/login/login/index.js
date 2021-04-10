@@ -84,10 +84,10 @@ class Login extends Component {
         <Form.Item>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col className="gutter-row" span={3}>
-              <div><img src="image/google.svg" width='40' onClick={signInWithGoogle}></img></div>
+              <div><img src="image/google.svg" width='40' className='cursor-pointer' onClick={signInWithGoogle}></img></div>
             </Col>
             <Col className="gutter-row" span={3}>
-              <div onClick={()=>this.loginFace()}><img src="image/facebook.svg" width='40'></img></div>
+              <div onClick={()=>this.loginFace()}><img className='cursor-pointer' src="image/facebook.svg" width='40'></img></div>
             </Col>
           </Row>
         </Form.Item>

@@ -1,5 +1,6 @@
-import firebase from 'firebase/app';
+import firebase from 'firebase';
 import 'firebase/auth';
+// import fireb from 'firebase';
 
 const config = {
     apiKey: "AIzaSyDxmeWkMKpV6v8S8YR0Cm7ru0CexlNog-w",
@@ -11,10 +12,10 @@ const config = {
     measurementId: "G-VC30FQ09V5"
 };
 
+// fireb.initializeApp(config);
 firebase.initializeApp(config);
-
+// export default fireb;
 export const auth = firebase.auth();
-
 const provider = new firebase.auth.GoogleAuthProvider();
 const facebookProvider = new firebase.auth.FacebookAuthProvider();
 // facebookProvider.setCustomParameters({
