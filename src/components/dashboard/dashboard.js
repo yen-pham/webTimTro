@@ -52,7 +52,7 @@ class Dashboard extends Component {
               </div>
             </div>
           </div>
-          <div className="header-action">
+          <div className="header-action pb-2">
             <Button className="btn-dt" type="primary">Đăng tin</Button>
             <Button className="btn-search" type="primary">Tìm kiếm</Button>
           </div>
