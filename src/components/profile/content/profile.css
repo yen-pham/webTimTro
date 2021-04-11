@@ -1,0 +1,9 @@
+.infomation .contact-info .basic-info .avt .avt-img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.infomation .contact-info .basic-info .detail .name{
+  font-size: 25px;
+  font-weight: 700;
+}

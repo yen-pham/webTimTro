@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 // import "./Content.css";
 import './Content.css';
-import { Carousel, Tabs } from 'antd';
+import { Carousel } from 'antd';
 import { PhoneOutlined, EnvironmentOutlined, UserOutlined, DollarCircleOutlined } from '@ant-design/icons';
-
-const { TabPane } = Tabs;
 
 // function callback(key) {
 //   console.log(key);
@@ -12,12 +10,8 @@ const { TabPane } = Tabs;
 class Content extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            TabPane: Tabs.TabPane
-        }
-    
-        
 
+    
     }
 
     render() {
@@ -63,84 +57,7 @@ class Content extends Component {
                                 <p className="text">Phòng tiện nghi có gác, 3tr, cư xá 512 Trường Chinh</p>
                             </div>
                             <div className="detail">
-                                <Tabs defaultActiveKey="1">
-                                    <TabPane tab="Thông tin về tài sản thuê" key="1">
-                                        <table>
-                                            <tr>
-                                                <th>Giá thuê</th>
-                                                <td>Bill Gates</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Đặt cọc</th>
-                                                <td>555 77 854</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Chi phí thông thường</th>
-                                                <td>555 77 855</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Kích thước</th>
-                                                <td>Bill Gates</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Số phòng</th>
-                                                <td>555 77 854</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Nội thất</th>
-                                                <td>555 77 855</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Tầng</th>
-                                                <td>Bill Gates</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Thang máy</th>
-                                                <td>555 77 854</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Cũng hướng đến người nước ngoài</th>
-                                                <td>555 77 855</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Hút thuốc</th>
-                                                <td>Bill Gates</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Có máy giặt</th>
-                                                <td>555 77 854</td>
-                                            </tr>
-                                        </table>
-                                    </TabPane>
-                                    <TabPane tab="Chi tiết căn hộ" key="2">
-                                    <table>
-                                            <tr>
-                                                <th>Thành phố</th>
-                                                <td>Bill Gates</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Quận</th>
-                                                <td>555 77 854</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Địa chỉ của tài</th>
-                                                <td>555 77 855</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Cơ sở để xe</th>
-                                                <td>Bill Gates</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Đối diện</th>
-                                                <td>555 77 854</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Số tầng của toàn nhà</th>
-                                                <td>555 77 854</td>
-                                            </tr>
-                                        </table>
-                                    </TabPane>
-                                </Tabs>
+                                <p>"Phòng Phú Nhuận phòng ngủ rộng 26m2 mới xây như khách sạn cho nữ thuê giá 2,9tr đến 4,5tr có ban công,cửa sổ.(có 2 Tolet một trong phòng ngủ và một ở nhà bếp) \n Bếp và chỗ để xe riêng rộng rãi,an ninh ,giờ tự do có khóa từ,camera quan sát chuông báo động, phòng rất thoát mát tuyệt đẹp,xem là thích ngay. Ngay trung tâm các quận 3, quận 1,quận Tân Bình, quận Bình Thạnh, quận Gò Vấp...!\nĐiện 3,500/kw\nNước 50ngàn/người\nInternet,rác 40/người\n\nCòn tin còn phòng( hẻm sát bên ngân hàng Vietinbank ngay ngã ba Phan Đình Phùng+ Huỳnh văn Bánh) gọi zalo, viber. cảm ơn đã đọc tin."</p>
                             </div>
                             <div className="infor row mt-5">
                                 <div className="col-3 d-block">
