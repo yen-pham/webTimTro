@@ -37,7 +37,8 @@ class LoginModal extends Component {
         return (
             <Fragment>
 
-                <Button type="primary" onClick={this.showModal}>Login</Button>
+                {/* <Button type="primary" >Login</Button> */}
+                <a className="nav-link" onClick={this.showModal} role="button">Đăng nhập</a>
                 <Modal title={this.state.isLogin?"Login":"Register"} visible={this.state.modalVisible} footer={null} onCancel={this.handleCancel}>
                     { this.state.isLogin?<Login isRegister={this.isRegister}/>:<Register isLogin={this.isLogin}/>}
                     {/*  */}

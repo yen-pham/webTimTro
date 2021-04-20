@@ -1,0 +1,32 @@
+.infomation {
+  background: #fff;
+}
+.infomation .contact-info .basic-info .avt .avt-img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.infomation .contact-info .basic-info .detail .name{
+  font-size: 25px;
+  font-weight: 700;
+}
+.infomation .contact-info .basic-info {
+  border-right: 1px solid #ddd;
+}
+.infomation .contact-info .extra-info {
+  line-height: 30px;
+}
+.infomation .page-container .page-title {
+  border-bottom: 1px solid #ddd;
+}
+.infomation .page-container .page-content .image {
+  height: 130px;
+  width: 180px;
+}
+.infomation .page-container .page-content .item-content {
+  position: absolute;
+  bottom: 0;
+}
+.infomation .page-container .add-item:hover {
+  background-color: #ddd;
+}
