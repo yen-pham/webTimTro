@@ -1,4 +1,4 @@
-import './App.scss';
+import './App.css';
 import LoginModal from './components/login/index';
 import 'antd/dist/antd.css'
 import Dashboard from './components/dashboard/dashboard';
@@ -6,24 +6,31 @@ import AppRouter from './router/router';
 import { connect } from 'react-redux';
 import { getMotelsAction } from './redux/action';
 import { Component } from 'react';
+import loading from "./loading/loading.png";
+import firebase from './connectFirebase/firebase.utils';
+import users from "./user.json"
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state={
+      user:[]
+    }
+  }
+  
   componentDidMount() {
-    console.log('aaapppp');
-    this.props.getMotels();
-    // getMotelsAction();
-    console.log(this.props.motels);
+    this.props.getMotels(); 
   }
   
   render() {
-      return (
-    <div className="App">
+    if(this.props.loading) return(<div className="loading-image"><img src={loading}/></div>) 
+    else return(<div className="App">
      <AppRouter/>
-    </div>
-  );
+    </div>)
+  ;
 }}
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   return({
   motels: state?.motels,
   loading: state?.loading,

@@ -11,8 +11,8 @@ class Profile extends Component {
                     <Header background="#337ae8" />
 
                     </div>
-                    <div class="">
-                                <div class="card-body">
+                    <div className="">
+                                <div className="card-body">
                                     <Content />
                                 </div>
                             </div>
