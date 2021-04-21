@@ -5,6 +5,9 @@ import {
     GET_MOTEL_FAIL,
     GET_MOTEL_SUCCESS,
     GET_MOTEL,
+    GET_USER_FAIL,
+    GET_USER_SUCCESS,
+    GET_USER,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
@@ -59,6 +62,24 @@ function rootReducer(state = initialState, action) {
                 motelDetail: action.payload,
             };
         case GET_MOTEL_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+        case GET_USER:
+            return {
+                ...state,
+                loading: true
+            };
+        case GET_USER_SUCCESS:
+            console.log(action.payload);
+            return {
+                ...state,
+                loading: false,
+                userDetail: action.payload,
+            };
+        case GET_USER_FAIL:
             return {
                 ...state,
                 loading: false,
