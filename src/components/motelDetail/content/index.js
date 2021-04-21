@@ -71,7 +71,7 @@ class Content extends Component {
                                 <p className="text">{this.props.motel?.title}</p>
                             </div>
                             <div className="detail">
-                                <p style={{'white-space': 'pre-line',overflow:'scroll', height:"400px"}}>{this.props.motel?.body}</p>
+                                <p style={{'white-space': 'pre-line',overflow:'auto', height:"400px"}}>{this.props.motel?.body}</p>
                             </div>
                             <div className="infor row mt-5">
                                 <div className="col-3 d-block">

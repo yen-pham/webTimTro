@@ -99,7 +99,7 @@ class Dashboard extends Component {
                 </div>
                 <div className="filter-searchtype mb-2">
                   <div className="searchtype-tilte">
-                    <span>Loại bất động sản</span>
+                    <span>Loại</span>
                   </div>
                   <div className="searchtype-selection">
                     <select className="form-control">
@@ -111,20 +111,33 @@ class Dashboard extends Component {
                   </div>
                 </div>
                 <div className="filter-searchtype mb-2">
-                  <div className="searchtype-tilte">
-                    <span>Địa điểm thành phố</span>
-                  </div>
                   <div className="searchtype-selection">
+                    <p className="mb-1 mt-2">Thành phố</p>
                     <select className="form-control">
-                      <option>Căn hộ</option>
+                      <option>Chọn tỉnh, thành phố</option>
                       <option>Nhà</option>
                       <option>Đề nghị về phòng</option>
                       <option>Người tìm phòng</option>
                     </select>
                   </div>
-                </div>
-                <div className="filter-searchtype mb-2">
-                  <input placeholder="Từ khóa" className="form-control"></input>
+                  <div className="searchtype-selection">
+                    <p className="mb-1 mt-2">Quận,huyện</p>
+                    <select className="form-control">
+                      <option>Chọn quận, huyện</option>
+                      <option>Nhà</option>
+                      <option>Đề nghị về phòng</option>
+                      <option>Người tìm phòng</option>
+                    </select>
+                  </div>
+                  <div className="searchtype-selection">
+                    <p className="mb-1 mt-2">Phường, xã, thị trấn</p>
+                    <select className="form-control">
+                      <option>Chọn phường, xã, thị trấn</option>
+                      <option>Nhà</option>
+                      <option>Đề nghị về phòng</option>
+                      <option>Người tìm phòng</option>
+                    </select>
+                  </div>
                 </div>
                 <div className="filter-searchtype mb-2">
                   <div className="searchtype-tilte">
@@ -139,16 +152,6 @@ class Dashboard extends Component {
                 <div className="filter-searchtype mb-2">
                   <div className="searchtype-tilte">
                     <span>Kích thước</span>
-                  </div>
-                  <div className="searchtype-price">
-                    <input placeholder="Min" className="form-control"></input>
-                    <span> - </span>
-                    <input placeholder="Max" className="form-control"></input>
-                  </div>
-                </div>
-                <div className="filter-searchtype mb-2">
-                  <div className="searchtype-tilte">
-                    <span>Số phòng ngủ</span>
                   </div>
                   <div className="searchtype-price">
                     <input placeholder="Min" className="form-control"></input>

@@ -1,0 +1,10 @@
+.logo-icon {
+  display: block;
+  width: 90px;
+  height: 48px;
+  background-size: 90px 48px;
+  text-indent: -9999px;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+}
