@@ -5,12 +5,23 @@ import {
     GET_MOTEL_FAIL,
     GET_MOTEL_SUCCESS,
     GET_MOTEL,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    LOGOUT,
+    REGISTER_ERROR,
+    REGISTER,
 } from "./constants";
 
 const initialState = {
     motels: [],
     loading:true,
     motelDetail:{},
+    curentUser: null,
+    loginError: "",
+    profile: {},
+    registerError:null,
+    registerSuccess:false
+
 };
 
 function rootReducer(state = initialState, action) {
@@ -52,6 +63,40 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 error: action.payload
+            };
+        case LOGIN_SUCCESS:
+            // console.log(state);
+            return {
+                ...state,
+                curentUser: action.payload,
+                profile: Object.entries(action.payload)[2][1].profile
+            };
+        case LOGIN_FAIL:
+            console.log(state);
+
+            return {
+                ...state,
+                error: action.payload
+            };
+        case REGISTER_ERROR:
+            console.log(state);
+            console.log(action.payload.message);
+            return {
+                ...state,
+                registerError: action.payload
+            };
+        case REGISTER:
+
+            return {
+                ...state,
+                registerError:null,
+                registerSuccess:true
+            };
+        case LOGOUT:
+            return {
+                ...state,
+                curentUser:null,
+                profile:null
             };
 
     }

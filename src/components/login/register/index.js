@@ -1,7 +1,10 @@
 import { Form, Input, Button } from 'antd';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import { doCreateUserWithEmailAndPassword } from '../../../connectFirebase/firebase.utils';
 import { auth } from '../../../connectFirebase/firebase.utils';
+import { registerAction } from '../../../redux/action';
 
 
 class Register extends Component {
@@ -27,9 +30,11 @@ class Register extends Component {
         });
     }
     createAccount = (email,password) => {
-        doCreateUserWithEmailAndPassword(email,password).then(user=>{console.log(user);this.props.isLogin();})
+        this.props.register(this.state.email,this.state.password);
+        this.props.isLogin();
     }
     render() {
+        console.log(this.props.registerError);
         return (
             <Form
             name="normal_login"
@@ -66,11 +71,21 @@ class Register extends Component {
                     <Button type="primary" htmlType="submit" onClick={(email,password)=>this.createAccount(this.state.email,this.state.password)}>
                         Register
               </Button>
+              <p>{this.props.registerError}</p>
                 </Form.Item>
             </Form>
             // <div>register</div>
         );
     }
 }
-
-export default Register;
+const mapStateToProps = (state) => {
+    return({
+        registerError: state?.registerError,
+        loginSuccess: state?.loginSuccess
+  })};
+const mapDispatchToProps = (dispatch) => {
+    return {  
+      register: (email,password) => dispatch(registerAction(email,password)),
+    };
+  };
+  export default connect(mapStateToProps, mapDispatchToProps)(Register);

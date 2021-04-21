@@ -3,6 +3,10 @@ import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { signInWithGoogle, doSignInWithFacebook, doSignInWithEmailAndPassword } from '../../../connectFirebase/firebase.utils';
 import { auth } from '../../../connectFirebase/firebase.utils';
+import { loginFaceAction, loginGoogleAction, loginPassAction, unsubscribe } from '../../../redux/action';
+import { connect } from 'react-redux';
+import facelogo from "./image/facebook.svg"
+import googlelogo from "./image/google.svg"
 
 class Login extends Component {
   constructor(props) {
@@ -13,19 +17,19 @@ class Login extends Component {
       password:''
     }
   }
-  unsubscribeFromAuth = null;
+  // unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
-    });
+    // this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+    //   this.setState({ currentUser: user });
+    // });
   }
 
   componentWillUnmount() {
-    this.unsubscribeFromAuth();
+    // this.unsubscribeFromAuth();
+    // this.props.unSubcribe()
   }
   loginFace =()=> {
-    console.log('aa');
     doSignInWithFacebook()
     .then(socialAuthUser => {console.log(socialAuthUser);})
   }
@@ -39,6 +43,7 @@ class Login extends Component {
     });
   }
   render() {
+    console.log(this.props.curentUser);
     return (
       <Form
         name="normal_login"
@@ -76,7 +81,7 @@ class Login extends Component {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button" onClick={(email, password)=>this.loginPass(this.state.email,this.state.password)}>
+          <Button type="primary" htmlType="submit" className="login-form-button" onClick={(email, password)=>this.props.loginPass(this.state.email,this.state.password)}>
             Log in
               </Button>
               Or <span className="cursor-pointer" onClick={()=>this.props.isRegister()} href="">register now!</span>
@@ -84,10 +89,10 @@ class Login extends Component {
         <Form.Item>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col className="gutter-row" span={3}>
-              <div><img src="image/google.svg" width='40' className='cursor-pointer' onClick={signInWithGoogle}></img></div>
+              <div><img src={googlelogo} width='40' className='cursor-pointer' onClick={this.props.loginGoogle}></img></div>
             </Col>
             <Col className="gutter-row" span={3}>
-              <div onClick={()=>this.loginFace()}><img className='cursor-pointer' src="image/facebook.svg" width='40'></img></div>
+              <div onClick={this.props.loginFace}><img className='cursor-pointer' src={facelogo} width='40'></img></div>
             </Col>
           </Row>
         </Form.Item>
@@ -95,5 +100,17 @@ class Login extends Component {
     );
   }
 }
-
-export default Login;
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return({
+    curentUser: state?.curentUser,
+})};
+const mapDispatchToProps = (dispatch) => {
+  return {  
+    loginFace: () => dispatch(loginFaceAction()),
+    loginPass: (email, password) => dispatch(loginPassAction(email, password)),
+    loginGoogle: ()=> dispatch(loginGoogleAction()),
+    unSubcribe: ()=> dispatch(unsubscribe()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
