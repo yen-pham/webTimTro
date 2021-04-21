@@ -17,9 +17,9 @@ class AppRouter extends Component {
                     <Route exact path="/">
                         <Dashboard />
                     </Route>
-                    <Route path="/detail">
-                    <MotelDetail/>
-                    </Route>
+                    <Route path="/detail/:id" component={MotelDetail}/>
+                    {/* <MotelDetail/>
+                    </Route> */}
                     <Route path="/profile">
                     <Profile/>
                     </Route>

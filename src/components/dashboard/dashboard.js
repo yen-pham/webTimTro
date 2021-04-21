@@ -1,26 +1,44 @@
 import React, { Component } from 'react';
 import { PhoneOutlined, SearchOutlined, RightOutlined, FacebookOutlined } from '@ant-design/icons';
 import './dashboard.css';
-import { Button, Menu, Checkbox } from 'antd';
+import { Button, Menu, Checkbox, Pagination } from 'antd';
 import Item from './home/item';
 import Header from '../layout/header/index';
 import { getMotelsAction } from '../../redux/action';
 import { connect } from "react-redux";
 
-
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      current:1,
+      motels:[],
+      pageSize:10,
     }
   }
 
   componentDidMount() {
-    console.log(this.props.motels);
+    // console.log(this.props.motels);
+    // this.props.getMotels();
+    this.props.motels&&this.pagination(1,10);
+    this.props.motels&&this.setState({total:this.props.motels.length});
   }
   
-
+  onChange = (page,pageSize) => {
+    // console.log(page);
+    this.setState({
+      current: page,
+      pageSize: pageSize
+    });
+    this.props.motels&&this.pagination(page,pageSize);
+    
+  };
+  pagination=(num,size)=>{
+    let firstIn = Object.fromEntries(
+      Object.entries(this.props.motels).slice((num-1)*size,num*size)
+  );
+    this.setState({motels:firstIn});
+  }
   menu = () => (
     <Menu>
       <Menu.Item key="1">
@@ -36,6 +54,8 @@ class Dashboard extends Component {
   );
 
   render() {
+    // console.log(this.state.motels);
+
     return (
       <div className="dashboard">
         <div className="dashboard-header">
@@ -153,8 +173,11 @@ class Dashboard extends Component {
               </div>
             </div>
             <div className="col-9 content row bg-light">
-              {this.props.motels?.map(value=><Item motel={value}/>)}
+              {Object.keys(this.state.motels||{}).map(key=><Item key={key} motel={{...this.props.motels[key],key}}/>)}
 
+            </div>
+            <div className="d-flex justify-content-center w100">
+            <Pagination current={this.state.current} onChange={this.onChange} total={Object.keys(this.props.motels||{}).length} size={this.state.pageSize}/>
             </div>
           </div>
         </div>
