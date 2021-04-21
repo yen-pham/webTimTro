@@ -8,7 +8,10 @@ import {
     LOGIN_SUCCESS,
     REGISTER,
     LOGIN_FAIL,
-    REGISTER_ERROR
+    REGISTER_ERROR,
+    GET_USER,
+    GET_USER_SUCCESS,
+    GET_USER_FAIL
 } from "./constants";
 import firebase, { doCreateUserWithEmailAndPassword, doSignInWithEmailAndPassword, doSignInWithFacebook, signInWithGoogle } from '../connectFirebase/firebase.utils';
 import { auth } from '../connectFirebase/firebase.utils';
@@ -42,6 +45,20 @@ export const getMotelFailAction = error => ({
 
     payload: error
 });
+export const getUserPendingAction = () => ({
+    type: GET_USER
+});
+
+export const getUserSuccessAction = data => ({
+    type: GET_USER_SUCCESS,
+    payload: data
+});
+
+export const getUserFailAction = error => ({
+    type: GET_USER_FAIL,
+
+    payload: error
+});
 export const loginSuccess = data => ({
     type: LOGIN_SUCCESS,
     payload: data
@@ -71,6 +88,17 @@ export const getMotelsAction = () => {
             return motels.on('value', (data) => dispatch(getMotelsSuccessAction(data.val())))
         } catch (error) {
             dispatch(getMotelsFailAction(error));
+        }
+    };
+};
+export const getUserAction = (id) => {
+    return dispatch => {
+        try {
+            dispatch(getUserPendingAction());
+            var motels = firebase.database().ref("user/"+id);
+            return motels.on('value', (data) => dispatch(getUserSuccessAction(data.val())))
+        } catch (error) {
+            dispatch(getUserFailAction(error));
         }
     };
 };
