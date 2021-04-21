@@ -157,7 +157,7 @@ class Content extends Component {
   render() {
     return (
       <div className="content">
-        <div classNam="header">
+        <div className="header">
           <div className="title pl-4">
             Admin
           </div>

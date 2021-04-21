@@ -7,7 +7,7 @@ class Item extends Component {
         // console.log(this.props.motel.images[0]);
 
         return (
-            <div className="col-4 image-container cursor-pointer">
+            <div className="col-lg-4 col-md-12 col-sm-12 image-container cursor-pointer">
                 <Link to={"/detail/"+this.props.motel.key}>
                 <img  src={this.props.motel.images[0]?this.props.motel.images[0]:this.props.motel.pictures[0]}/>
                 <div className="price">
