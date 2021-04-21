@@ -37,7 +37,7 @@ class Navbar extends Component {
           </nav>
         </header>
         <div className="row">
-        <div className="left-sidebar col-3" data-sidebarbg="skin6">
+        <div className="left-sidebar col-lg-3 col-md-3 col-sm-12" data-sidebarbg="skin6">
           <div className="scroll-sidebar">
             <nav className="sidebar-nav">
               <ul id="sidebarnav">
@@ -69,7 +69,7 @@ class Navbar extends Component {
             </nav>
           </div>
         </div>
-        <div className="col-9">
+        <div className="col-lg-9 col-md-9 col-sm-12">
           <Content />
         </div>
         </div>

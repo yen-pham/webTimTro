@@ -36,7 +36,7 @@ class Content extends Component {
 
             <div className="content container">
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-lg-6 col-md-12 col-sm-12">
                         <div className="slide-content ant">
                             {/* <div className="image-main"></div>
                             <div className="row">
@@ -65,7 +65,7 @@ class Content extends Component {
                             </Slider>
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-lg-6 col-md-12 col-sm-12">
                         <div className="detail-content">
                             <div className="title">
                                 <p className="text">{this.props.motel?.title}</p>
