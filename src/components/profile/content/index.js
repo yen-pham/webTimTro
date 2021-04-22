@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './profile.css';
 import { PlusOutlined, StarOutlined, CalendarOutlined, EnvironmentOutlined, MessageOutlined, InboxOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import EditProfile from './edit-profile/index'
 class Content extends Component {
   render() {
     return (
@@ -56,7 +57,8 @@ class Content extends Component {
             
           </div>
         </div>
-        <div className="page-container pt-4">
+        <EditProfile/>
+        <div className="page-container pt-4 d-none">
           <div className="page-title p-2">
             <strong>Đang bán</strong><span className="text-muted">&#160;- 15 tin</span>
           </div>

@@ -1,0 +1,22 @@
+.edit .avt-img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  display: flex;
+  margin: 0 auto;
+}
+.searchtype-price .ant-input-affix-wrapper, .searchtype-price .ant-input {
+  background-color: #eee;
+}
+.camera-icon {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 2px #fff solid;
+  text-align: center;
+  background: #989292;
+  color: #fff;
+  position: absolute;
+  top: 70px;
+  left: 170px;
+}
