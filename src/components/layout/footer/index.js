@@ -5,7 +5,7 @@ class Footer extends Component {
     render() {
         return (
             <div className="dashboard-footer container pt-4">
-                <div className="row">
+                <div className="row" style={{width:"100%"}}>
                     <div className="left-footer col-3">
                         <div className="d-flex">
                             <a>Đăng tin</a><RightOutlined />

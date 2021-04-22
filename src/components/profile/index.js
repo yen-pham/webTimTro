@@ -3,6 +3,14 @@ import Footer from '../layout/footer';
 import Header from '../layout/header';
 import Content from './content/index';
 class Profile extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+        id : this.props.match.params.id,
+        profile:{}
+    }
+}
   render() {
     return (
       <div className="dashboard">
@@ -13,7 +21,7 @@ class Profile extends Component {
                     </div>
                     <div className="">
                                 <div className="card-body">
-                                    <Content />
+                                    <Content id={this.state.id}/>
                                 </div>
                             </div>
                     <Footer/>

@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Dashboard from '../components/dashboard/dashboard';
 import MotelDetail from '../components/motelDetail';
+import Post from '../components/post';
 import Profile from '../components/profile'
 
 class AppRouter extends Component {
@@ -18,10 +19,14 @@ class AppRouter extends Component {
                         <Dashboard />
                     </Route>
                     <Route path="/detail/:id" component={MotelDetail}/>
+                    <Route path="/profile/:id" component={Profile}/>
                     {/* <MotelDetail/>
                     </Route> */}
                     <Route path="/profile">
                     <Profile/>
+                    </Route>
+                    <Route path="/post">
+                    <Post/>
                     </Route>
                 </Switch>
 

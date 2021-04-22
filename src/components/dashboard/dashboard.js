@@ -6,6 +6,7 @@ import Item from './home/item';
 import Header from '../layout/header/index';
 import { getMotelsAction } from '../../redux/action';
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -52,7 +53,9 @@ class Dashboard extends Component {
       </Menu.Item>
     </Menu>
   );
-
+  goToPost= ()=>{
+    !this.props.profile&& alert('Bạn phải đăng nhập để đăng tin !')  
+  }
   render() {
     // console.log(this.state.motels);
 
@@ -73,7 +76,7 @@ class Dashboard extends Component {
             </div>
           </div>
           <div className="header-action pb-2">
-            <Button className="btn-dt" type="primary">Đăng tin</Button>
+            <Button className="btn-dt" type="primary"><Link onClick={()=>this.goToPost()} to={this.props.profile?"/post":'/'}>Đăng tin</Link></Button>
             <Button className="btn-search" type="primary">Tìm kiếm</Button>
           </div>
         </div>
@@ -189,6 +192,7 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => ({
   motels: state?.motels,
   loading: state?.loading,
+  profile: state?.profile,
 });
 const mapDispatchToProps = (dispatch) => {
   return {  

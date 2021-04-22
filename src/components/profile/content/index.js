@@ -2,7 +2,20 @@ import React, { Component } from 'react';
 import './profile.css';
 import { PlusOutlined, StarOutlined, CalendarOutlined, EnvironmentOutlined, MessageOutlined, InboxOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import { connect } from 'react-redux';
 class Content extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+        profile:{}
+    }
+}
+componentDidMount() {
+  if(this.props.id=='self'){
+    this.setState({profile: this.props.profile});
+  }
+}
+
   render() {
     return (
       <div className="infomation container">
@@ -10,10 +23,14 @@ class Content extends Component {
           <div className='col-6 basic-info'>
             <div className="row">
               <div className="avt col-3">
-                <img className="avt-img" src="https://ict-imgs.vgcloud.vn/2020/09/01/19/huong-dan-tao-facebook-avatar.jpg"></img>
+               {this.props.curentUser&&Object.entries(this.props.curentUser)[2][1].providerId=="facebook.com" && (<img className="avt-img" src={this.props.profile?.picture.data.url}/>)
+                }
+                {
+                  this.props.curentUser&&(Object.entries(this.props.curentUser)[2][1].providerId=="google.com")&&(<img className="avt-img" src={this.props.profile?.picture}/>)
+                }
               </div>
               <div className="col-9 detail">
-                <div className="name">Nguyễn Văn Linh</div>
+                <div className="name">{this.props.profile?.name}</div>
                 <div className="folow-row row mt-2">
                   <div className="col-6"><strong>100 </strong>lượt theo dõi</div>
                   <div className="col-6"><strong>0 </strong>đang theo dõi</div>
@@ -115,5 +132,8 @@ class Content extends Component {
     );
   }
 }
-
-export default Content;
+const mapStateToProps = (state) => ({
+  profile: state?.profile,
+  curentUser: state?.curentUser
+});
+export default connect(mapStateToProps, null)(Content);

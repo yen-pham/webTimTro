@@ -2,6 +2,7 @@ import { Image } from 'antd';
 import Avatar from 'antd/lib/avatar/avatar';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { logout } from '../../../redux/action';
 import LoginModal from '../../login/index';
 import './header.css';
@@ -9,21 +10,21 @@ import './header.css';
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state={
-      profile: this.props?.curentUser&&Object.entries(this.props.curentUser)[2][1].profile
+    this.state = {
+      profile: this.props?.curentUser && Object.entries(this.props.curentUser)[2][1].profile
     }
   }
   componentDidMount() {
     this.setState({
-      profile: this.props?.curentUser&&Object.entries(this.props.curentUser)[2][1].profile
+      profile: this.props?.curentUser && Object.entries(this.props.curentUser)[2][1].profile
 
     });
   }
-   toDataURL(url, callback) {
+  toDataURL(url, callback) {
     var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
+    xhr.onload = function () {
       var reader = new FileReader();
-      reader.onloadend = function() {
+      reader.onloadend = function () {
         callback(reader.result);
       }
       reader.readAsDataURL(xhr.response);
@@ -47,6 +48,9 @@ class Header extends Component {
           <div className="navigation">
             <ul className="nav justify-content-center">
               <li className="nav-item">
+                <Link className="nav-link" to="/">Home</Link>
+              </li>
+              <li className="nav-item">
                 <a className="nav-link" href="/detail">Blog</a>
               </li>
               <li className="nav-item">
@@ -55,16 +59,18 @@ class Header extends Component {
               <li className="nav-item">
                 <a className="nav-link" href="#">en vi</a>
               </li>
+              <Link to={"/profile/self"}>
+                {
+                  (this.props.curentUser && Object.entries(this.props.curentUser)[2][1].providerId == "facebook.com") && <li className="nav-item">
+                    <Avatar src={<img src={this.props.profile?.picture.data.url} />} />
+                  </li>
+                }
+                {this.props.curentUser && (Object.entries(this.props.curentUser)[2][1].providerId == "google.com") && <li className="nav-item">
+                  <Avatar src={<img src={this.props.profile?.picture} />} />
+                </li>
+                }
+              </Link>
 
-              {
-              (this.props.curentUser&&Object.entries(this.props.curentUser)[2][1].providerId=="facebook.com")&&<li className="nav-item">
-              <Avatar src={<img src={this.props.profile?.picture.data.url}/>}/>
-              </li>
-              }
-              {this.props.curentUser&&(Object.entries(this.props.curentUser)[2][1].providerId=="google.com")&&<li className="nav-item">
-              <Avatar src={<img src={this.props.profile?.picture}/>}/>
-              </li>
-              }
               <li className="nav-item">
                 {this.props.curentUser ? <a className="nav-link" onClick={this.props.logout}>Đăng xuất</a> : <LoginModal />}
               </li>

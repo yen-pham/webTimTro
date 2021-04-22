@@ -10,17 +10,20 @@ import {
     LOGOUT,
     REGISTER_ERROR,
     REGISTER,
+    GET_REGIONS_FAIL,
+    GET_REGIONS_SUCCESS,
 } from "./constants";
 
 const initialState = {
     motels: [],
-    loading:true,
+    loading:false,
     motelDetail:{},
     curentUser: null,
     loginError: "",
-    profile: {},
+    profile: null,
     registerError:null,
-    registerSuccess:false
+    registerSuccess:false,
+    regions:{}
 
 };
 
@@ -45,12 +48,12 @@ function rootReducer(state = initialState, action) {
                 loading: false,
                 error: action.payload
             };
-        case GET_MOTEL:
-            console.log(state);
-            return {
-                ...state,
-                loading: true
-            };
+        // case GET_MOTEL:
+        //     console.log(state);
+        //     return {
+        //         ...state,
+        //         loading: true
+        //     };
         case GET_MOTEL_SUCCESS:
             console.log(action.payload);
             return {
@@ -98,7 +101,18 @@ function rootReducer(state = initialState, action) {
                 curentUser:null,
                 profile:null
             };
-
+        case GET_REGIONS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                regions: action.payload,
+            };
+        case GET_REGIONS_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
     }
 }
 

@@ -13,6 +13,8 @@ import {
 import firebase, { doCreateUserWithEmailAndPassword, doSignInWithEmailAndPassword, doSignInWithFacebook, signInWithGoogle } from '../connectFirebase/firebase.utils';
 import { auth } from '../connectFirebase/firebase.utils';
 import { LOGOUT } from "./constants";
+import { GET_REGIONS_FAIL } from "./constants";
+import { GET_REGIONS_SUCCESS } from "./constants";
 
 
 export const getMotelsPendingAction = () => ({
@@ -62,7 +64,16 @@ export const loginFail = error => ({
 export const logout = () => ({
     type: LOGOUT,
 });
+export const getRegionsSuccessAction = data => ({
+    type: GET_REGIONS_SUCCESS,
+    payload: data
+});
 
+export const getRegionsFailAction = error => ({
+    type: GET_REGIONS_FAIL,
+
+    payload: error
+});
 export const getMotelsAction = () => {
     return dispatch => {
         try {
@@ -141,3 +152,18 @@ export const loginPassAction = (email, password) => {
 // export const loginPassAction = () => {
 // }
 // doSignInWithEmailAndPassword(email, password).then(socialAuthUser => {console.log(socialAuthUser);})
+export const getRegionsAction = () => {
+    return dispatch => {
+        try {
+            var regions = firebase.database().ref("region");
+            return regions.on('value', (data) => {dispatch(getRegionsSuccessAction(data.val()))})
+        } catch (error) {
+            dispatch(getRegionsFailAction(error));
+        }
+    };
+};
+export const postAction = (post) => {
+firebase.database().ref("motel").push(post).then(()=> {return true}).error(()=> {return false});
+
+
+};
