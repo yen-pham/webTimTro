@@ -5,6 +5,9 @@ import {
     GET_MOTEL_FAIL,
     GET_MOTEL_SUCCESS,
     GET_MOTEL,
+    GET_USER_FAIL,
+    GET_USER_SUCCESS,
+    GET_USER,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
@@ -12,6 +15,8 @@ import {
     REGISTER,
     GET_REGIONS_FAIL,
     GET_REGIONS_SUCCESS,
+    GET_USERS_FAIL,
+    GET_USERS_SUCCESS,
 } from "./constants";
 
 const initialState = {
@@ -67,6 +72,37 @@ function rootReducer(state = initialState, action) {
                 loading: false,
                 error: action.payload
             };
+        case GET_USER:
+            return {
+                ...state,
+                loading: true
+            };
+        case GET_USER_SUCCESS:
+            console.log(action.payload);
+            return {
+                ...state,
+                loading: false,
+                userDetail: action.payload,
+            };
+        case GET_USER_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+        case GET_USERS_SUCCESS:
+            console.log(action.payload);
+            return {
+                ...state,
+                loading: false,
+                users: action.payload,
+            };
+        case GET_USERS_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
         case LOGIN_SUCCESS:
             // console.log(state);
             return {
@@ -113,6 +149,11 @@ function rootReducer(state = initialState, action) {
                 loading: false,
                 error: action.payload
             };
+        // case CHANGE_ACTIVE:
+        //     return {
+        //         ...state,
+        //         error: action.payload
+        //     };
     }
 }
 

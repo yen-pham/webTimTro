@@ -8,7 +8,13 @@ import {
     LOGIN_SUCCESS,
     REGISTER,
     LOGIN_FAIL,
-    REGISTER_ERROR
+    REGISTER_ERROR,
+    GET_USER,
+    GET_USER_SUCCESS,
+    GET_USER_FAIL,
+    GET_USERS_SUCCESS,
+    GET_USERS_FAIL,
+    CHANGE_ACTIVE,
 } from "./constants";
 import firebase, { doCreateUserWithEmailAndPassword, doSignInWithEmailAndPassword, doSignInWithFacebook, signInWithGoogle } from '../connectFirebase/firebase.utils';
 import { auth } from '../connectFirebase/firebase.utils';
@@ -44,6 +50,30 @@ export const getMotelFailAction = error => ({
 
     payload: error
 });
+export const getUserPendingAction = () => ({
+    type: GET_USER
+});
+
+export const getUserSuccessAction = data => ({
+    type: GET_USER_SUCCESS,
+    payload: data
+});
+
+export const getUserFailAction = error => ({
+    type: GET_USER_FAIL,
+
+    payload: error
+});
+export const getUsersSuccessAction = data => ({
+    type: GET_USERS_SUCCESS,
+    payload: data
+});
+
+export const getUsersFailAction = error => ({
+    type: GET_USERS_FAIL,
+
+    payload: error
+});
 export const loginSuccess = data => ({
     type: LOGIN_SUCCESS,
     payload: data
@@ -60,6 +90,10 @@ export const loginFail = error => ({
     type: LOGIN_FAIL,
     payload: error
 });
+export const changeActive = key => ({
+    type: CHANGE_ACTIVE,
+    payload: key
+});
 
 export const logout = () => ({
     type: LOGOUT,
@@ -69,11 +103,11 @@ export const getRegionsSuccessAction = data => ({
     payload: data
 });
 
-export const getRegionsFailAction = error => ({
-    type: GET_REGIONS_FAIL,
+// export const getRegionsFailAction = error => ({
+//     type: GET_REGIONS_FAIL,
 
-    payload: error
-});
+//     payload: error
+// });
 export const getMotelsAction = () => {
     return dispatch => {
         try {
@@ -82,6 +116,27 @@ export const getMotelsAction = () => {
             return motels.on('value', (data) => dispatch(getMotelsSuccessAction(data.val())))
         } catch (error) {
             dispatch(getMotelsFailAction(error));
+        }
+    };
+};
+export const getUserAction = (id) => {
+    return dispatch => {
+        try {
+            dispatch(getUserPendingAction());
+            var motels = firebase.database().ref("user/"+id);
+            return motels.on('value', (data) => dispatch(getUserSuccessAction(data.val())))
+        } catch (error) {
+            dispatch(getUserFailAction(error));
+        }
+    };
+};
+export const getUsersAction = (id) => {
+    return dispatch => {
+        try {
+            var motels = firebase.database().ref("user/");
+            return motels.on('value', (data) => dispatch(getUsersSuccessAction(data.val())))
+        } catch (error) {
+            dispatch(getUsersFailAction(error));
         }
     };
 };
@@ -158,9 +213,18 @@ export const getRegionsAction = () => {
             var regions = firebase.database().ref("region");
             return regions.on('value', (data) => {dispatch(getRegionsSuccessAction(data.val()))})
         } catch (error) {
-            dispatch(getRegionsFailAction(error));
+            // dispatch(getRegionsFailAction(error));
         }
     };
+};
+export const changeActiveUserAction = (key) => {
+    let u;
+     firebase.database().ref("user/"+key).on('value', (data) => { u = data?.val(); u.is_active = !data?.val().is_active;
+     })
+    firebase.database().ref("user/"+key).set(u);
+};
+export const removeUserAction = (key) => {
+     firebase.database().ref("user/"+key).remove();
 };
 export const postAction = (post) => {
 firebase.database().ref("motel").push(post).then(()=> {return true}).error(()=> {return false});

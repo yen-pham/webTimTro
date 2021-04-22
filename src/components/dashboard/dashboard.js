@@ -8,37 +8,38 @@ import { getMotelsAction } from '../../redux/action';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
+import Footer from '../layout/footer/index';
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current:1,
-      motels:[],
-      pageSize:10,
+      current: 1,
+      motels: [],
+      pageSize: 10,
     }
   }
 
   componentDidMount() {
     // console.log(this.props.motels);
     // this.props.getMotels();
-    this.props.motels&&this.pagination(1,10);
-    this.props.motels&&this.setState({total:this.props.motels.length});
+    this.props.motels && this.pagination(1, 10);
+    this.props.motels && this.setState({ total: this.props.motels.length });
   }
-  
-  onChange = (page,pageSize) => {
+
+  onChange = (page, pageSize) => {
     // console.log(page);
     this.setState({
       current: page,
       pageSize: pageSize
     });
-    this.props.motels&&this.pagination(page,pageSize);
-    
+    this.props.motels && this.pagination(page, pageSize);
+
   };
-  pagination=(num,size)=>{
+  pagination = (num, size) => {
     let firstIn = Object.fromEntries(
-      Object.entries(this.props.motels).slice((num-1)*size,num*size)
-  );
-    this.setState({motels:firstIn});
+      Object.entries(this.props.motels).slice((num - 1) * size, num * size)
+    );
+    this.setState({ motels: firstIn });
   }
   menu = () => (
     <Menu>
@@ -62,7 +63,7 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         <div className="dashboard-header">
-          <Header background="unset"/>
+          <Header background="unset" />
           <div className="header-center">
             <div className="center-title">
               <p>Thuecanho.com</p>
@@ -82,7 +83,7 @@ class Dashboard extends Component {
         </div>
         <div className="container dashboard-body pt-3">
           <div className="row">
-            <div className="col-3 action">
+            <div className="col-lg-3 col-md-5 col-sm-12 action">
               <div className="filter-tabs">
                 <ul className="nav justify-content-center">
                   <li className="nav-item">
@@ -102,7 +103,7 @@ class Dashboard extends Component {
                 </div>
                 <div className="filter-searchtype mb-2">
                   <div className="searchtype-tilte">
-                    <span>Loại bất động sản</span>
+                    <span>Loại</span>
                   </div>
                   <div className="searchtype-selection">
                     <select className="form-control">
@@ -114,20 +115,33 @@ class Dashboard extends Component {
                   </div>
                 </div>
                 <div className="filter-searchtype mb-2">
-                  <div className="searchtype-tilte">
-                    <span>Địa điểm thành phố</span>
-                  </div>
                   <div className="searchtype-selection">
+                    <p className="mb-1 mt-2">Thành phố</p>
                     <select className="form-control">
-                      <option>Căn hộ</option>
+                      <option>Chọn tỉnh, thành phố</option>
                       <option>Nhà</option>
                       <option>Đề nghị về phòng</option>
                       <option>Người tìm phòng</option>
                     </select>
                   </div>
-                </div>
-                <div className="filter-searchtype mb-2">
-                  <input placeholder="Từ khóa" className="form-control"></input>
+                  <div className="searchtype-selection">
+                    <p className="mb-1 mt-2">Quận,huyện</p>
+                    <select className="form-control">
+                      <option>Chọn quận, huyện</option>
+                      <option>Nhà</option>
+                      <option>Đề nghị về phòng</option>
+                      <option>Người tìm phòng</option>
+                    </select>
+                  </div>
+                  <div className="searchtype-selection">
+                    <p className="mb-1 mt-2">Phường, xã, thị trấn</p>
+                    <select className="form-control">
+                      <option>Chọn phường, xã, thị trấn</option>
+                      <option>Nhà</option>
+                      <option>Đề nghị về phòng</option>
+                      <option>Người tìm phòng</option>
+                    </select>
+                  </div>
                 </div>
                 <div className="filter-searchtype mb-2">
                   <div className="searchtype-tilte">
@@ -151,16 +165,6 @@ class Dashboard extends Component {
                 </div>
                 <div className="filter-searchtype mb-2">
                   <div className="searchtype-tilte">
-                    <span>Số phòng ngủ</span>
-                  </div>
-                  <div className="searchtype-price">
-                    <input placeholder="Min" className="form-control"></input>
-                    <span> - </span>
-                    <input placeholder="Max" className="form-control"></input>
-                  </div>
-                </div>
-                <div className="filter-searchtype mb-2">
-                  <div className="searchtype-tilte">
                     <span>Nội thất</span>
                   </div>
                   <div className="searchtype-checkbox d-block">
@@ -175,16 +179,17 @@ class Dashboard extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-9 content row bg-light">
-              {Object.keys(this.state.motels||{}).map(key=><Item key={key} motel={{...this.props.motels[key],key}}/>)}
+            <div className="col-lg-9 col-md-7 col-sm-12 content row bg-light">
+              {Object.keys(this.state.motels || {}).map(key => <Item key={key} motel={{ ...this.props.motels[key], key }} />)}
 
             </div>
             <div className="d-flex justify-content-center w100">
-            <Pagination current={this.state.current} onChange={this.onChange} total={Object.keys(this.props.motels||{}).length} size={this.state.pageSize}/>
+              <Pagination current={this.state.current} onChange={this.onChange} total={Object.keys(this.props.motels || {}).length} size={this.state.pageSize} />
             </div>
           </div>
         </div>
-           </div>
+        <Footer/>
+      </div>
     );
   }
 }
@@ -195,7 +200,7 @@ const mapStateToProps = (state) => ({
   profile: state?.profile,
 });
 const mapDispatchToProps = (dispatch) => {
-  return {  
+  return {
     getMotels: () => dispatch(getMotelsAction())
   };
 };

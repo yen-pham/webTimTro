@@ -10,10 +10,8 @@ import loading from "./loading/loading.png";
 import firebase from './connectFirebase/firebase.utils';
 import users from "./user.json"
 import {VIETNAM_BOUNDARY} from "./vietnamBoundaryData.ts"
-
-const sliceString =(t)=>{
-  return t.search("Tỉnh")>0?  t.slice(5):t.slice(10); 
-}
+import us from "./linhNghiepCopy.json";
+import u from "./linhNghiep.json";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -97,6 +95,13 @@ class App extends Component {
         // handle errors
     })
     return ward;
+    // let temp={}
+    // us.map((val,key)=>{
+    //   console.log(u[key]);
+    //   temp= {...temp,...{[val.account_oid] : {...val,...u[key].result}}};
+    //   console.log(temp);
+    // })
+    // firebase.database().ref("user").set(temp);
   }
   
   render() {
@@ -106,6 +111,7 @@ class App extends Component {
     </div>)
   ;
 }}
+ 
 const mapStateToProps = (state) => {
   // console.log(state);
   return({

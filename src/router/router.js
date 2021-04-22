@@ -9,6 +9,7 @@ import Dashboard from '../components/dashboard/dashboard';
 import MotelDetail from '../components/motelDetail';
 import Post from '../components/post';
 import Profile from '../components/profile'
+import Admin from '../components/admin/index'
 
 class AppRouter extends Component {
     render() {
@@ -27,6 +28,9 @@ class AppRouter extends Component {
                     </Route>
                     <Route path="/post">
                     <Post/>
+                    </Route>
+                    <Route path="/admin">
+                    <Admin/>
                     </Route>
                 </Switch>
 

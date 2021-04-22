@@ -14,3 +14,8 @@
 .loading-image img {
     height :100vh
 }
+@media (max-width: 540px) {
+    .dashboard-footer {
+      display: none !important;
+    }
+}

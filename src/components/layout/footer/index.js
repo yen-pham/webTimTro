@@ -14,7 +14,7 @@ class Footer extends Component {
                     </div>
                     <div className="right-footer col-9 row">
                         <div className="col-4 footer-submenu">
-                            <ul className="nav justify-content-center d-block">
+                            <ul className="nav justify-content-center d-block mt-0">
                                 <li className="nav-item">
                                     <a className="nav-link active" href="#">Điều khoản thỏa thuận</a>
                                 </li>
